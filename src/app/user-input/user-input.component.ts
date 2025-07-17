@@ -1,4 +1,4 @@
-import { Component, EventEmitter, output, Output, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InvestmentData } from '../investment-data.model';
 import { InvestmentService } from '../services/investment.service';
@@ -19,7 +19,6 @@ export class UserInputComponent {
   constructor(private investmentService: InvestmentService) {}
 
   onSubmit() {
-    // Emit the collected data when the form is submitted
     this.investmentService.calculateInvestmentResults({
       initialInvestment: +this.investmentAmount(),
       annualInvestment: +this.annualInvestment(),
