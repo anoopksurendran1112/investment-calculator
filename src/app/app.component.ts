@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
-import { InvestmentData } from './investment-data.model';
+import { InvestmentData, InvestmentResultData } from './investment-data.model';
 
 import { HeaderComponent } from './header/header.component';
 import { UserInputComponent } from './user-input/user-input.component';
+import { InvestmentResultComponent } from './investment-result/investment-result.component';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, UserInputComponent],
+  imports: [HeaderComponent, UserInputComponent, InvestmentResultComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'investment-calculator';
+  // This will hold the investment results
+  resultData?: InvestmentResultData[]; 
 
   // This method will be called when the user submits the form in UserInputComponent
   // It receives the InvestmentData object emitted by UserInputComponent
@@ -35,7 +37,7 @@ export class AppComponent {
         totalAmountInvested: initialInvestment + annualInvestment * year,
       });
     }
-    console.log(annualData);
+    this.resultData = annualData;
   }
 
 }

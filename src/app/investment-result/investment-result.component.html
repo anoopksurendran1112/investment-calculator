@@ -1,0 +1,28 @@
+@if (!resultData) {
+     <h2 class="mb-2">Please add some values to see the investment results.</h2>
+}
+@else {
+    <h2 class="mb-2">Investment Results:</h2>
+    <table class="w-full text-left text-white">
+        <thead class="bg-[#1a1f1d]">
+            <tr>
+                <th class=" border border-white">Year</th>
+                <th class=" border border-white">Investment Value</th>
+                <th class=" border border-white">Annual Investment</th>
+                <th class=" border border-white">Total Investment</th>
+                <th class=" border border-white">Expected Return</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (result of resultData; track result.year) {
+                <tr class="bg-[#303b37]">
+                    <td class="border border-white">{{result.year}}</td>
+                    <td class="border border-white">{{result.valueEndOfYear | currency:"INR"}}</td>
+                    <td class="border border-white">{{result.annualInvestment | currency:"INR"}}</td>
+                    <td class="border border-white">{{result.totalAmountInvested | currency:"INR"}}</td>
+                    <td class="border border-white">{{result.totalInterest | currency:"INR"}}</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
