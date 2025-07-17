@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmit()" class="min-w-96 border border-black rounded drop-shadow-lg py-6 px-10" style="background: linear-gradient(#1a1f1d, #303b37);">
+    <div class="mb-5">
+        <label for="investment-amount" class="block mb-2 text-white text-sm">Investment Amount : </label>
+        <input id="investment-amount" name="investment-amount" [(ngModel)]="investmentAmount" type="number" placeholder="Enter your investment amount" class="text-black w-full shadow border rounded p-1 "/>
+    </div>
+    <div class="mb-5">
+        <label for="annual-investment" class="block mb-2 text-white text-sm">Annual Investment : </label>
+        <input id="annual-investment" name="annual-investment" [(ngModel)]="annualInvestment" type="number" placeholder="Enter your annual investment" class="text-black w-full shadow border rounded p-1 "/>
+    </div>
+    <div class="mb-5">
+        <label for="expected-return" class="block mb-2 text-white text-sm">Expected Return (%) :</label>
+        <input id="expected-return" name="expected-return" [(ngModel)]="expectedReturn" type="number" placeholder="Enter your expected return" class="text-black w-full shadow border rounded p-1 "/>
+    </div>
+    <div class="mb-5">
+        <label for="investment-duration" class="block mb-2 text-white text-sm">Investment Duration (Years) :</label>
+        <input id="investment-duration" name="investment-duration" [(ngModel)]="investmentDuration" type="number" placeholder="Enter the duration in years" class="text-black w-full shadow border rounded p-1 "/>
+    </div>
+    <div class="mb-5">
+        <button type="submit" class="bg-[#e4e4e7] text-[#020617] font-bold rounded py-1 px-4 hover:bg-[#737373]" >Check</button>
+    </div>
+</form>
