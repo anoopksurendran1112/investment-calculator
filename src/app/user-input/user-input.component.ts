@@ -1,6 +1,7 @@
 import { Component, EventEmitter, output, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InvestmentData } from '../investment-data.model';
+import { InvestmentService } from '../services/investment.service';
 
 @Component({
   selector: 'app-user-input',
@@ -9,19 +10,17 @@ import { InvestmentData } from '../investment-data.model';
   styleUrl: './user-input.component.css'
 })
 export class UserInputComponent {
-  // This component collects user input for investment calculations
- calculate = output<InvestmentData>();
-  
   // Properties to hold user input values
   investmentAmount = signal("");
   annualInvestment = signal("");
   expectedReturn = signal("");
   investmentDuration = signal("");
 
+  constructor(private investmentService: InvestmentService) {}
 
   onSubmit() {
     // Emit the collected data when the form is submitted
-    this.calculate.emit({
+    this.investmentService.calculateInvestmentResults({
       initialInvestment: +this.investmentAmount(),
       annualInvestment: +this.annualInvestment(),
       expectedReturn: +this.expectedReturn(),
