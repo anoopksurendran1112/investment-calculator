@@ -1,4 +1,4 @@
-@if (!resultData) {
+@if (!resultData()) {
      <h2 class="mb-2">Please add some values to see the investment results.</h2>
 }
 @else {
@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            @for (result of resultData; track result.year) {
+            @for (result of resultData(); track result.year) {
                 <tr class="bg-[#303b37]">
                     <td class="border border-white">{{result.year}}</td>
                     <td class="border border-white">{{result.valueEndOfYear | currency:"INR"}}</td>

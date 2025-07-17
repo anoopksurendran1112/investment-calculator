@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, output, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InvestmentData } from '../investment-data.model';
 
@@ -10,22 +10,27 @@ import { InvestmentData } from '../investment-data.model';
 })
 export class UserInputComponent {
   // This component collects user input for investment calculations
-  @Output() calculate = new EventEmitter<InvestmentData>();
+ calculate = output<InvestmentData>();
   
   // Properties to hold user input values
-  investmentAmount: string = "0";
-  annualInvestment: string = "0"; 
-  expectedReturn: string = "0";
-  investmentDuration: string = "0";
+  investmentAmount = signal("");
+  annualInvestment = signal("");
+  expectedReturn = signal("");
+  investmentDuration = signal("");
 
 
   onSubmit() {
     // Emit the collected data when the form is submitted
     this.calculate.emit({
-      initialInvestment: +this.investmentAmount,
-      annualInvestment: +this.annualInvestment,
-      expectedReturn: +this.expectedReturn,
-      duration: +this.investmentDuration
+      initialInvestment: +this.investmentAmount(),
+      annualInvestment: +this.annualInvestment(),
+      expectedReturn: +this.expectedReturn(),
+      duration: +this.investmentDuration()
     });
+    // Reset the input fields after submission
+    this.investmentAmount.set("");
+    this.annualInvestment.set("");
+    this.expectedReturn.set("");
+    this.investmentDuration.set("");
   }
 }

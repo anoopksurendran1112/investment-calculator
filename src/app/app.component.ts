@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { InvestmentData, InvestmentResultData } from './investment-data.model';
 
 import { HeaderComponent } from './header/header.component';
@@ -13,7 +13,7 @@ import { InvestmentResultComponent } from './investment-result/investment-result
 })
 export class AppComponent {
   // This will hold the investment results
-  resultData?: InvestmentResultData[]; 
+  resultData=signal<InvestmentResultData[]|undefined>(undefined); 
 
   // This method will be called when the user submits the form in UserInputComponent
   // It receives the InvestmentData object emitted by UserInputComponent
@@ -37,7 +37,7 @@ export class AppComponent {
         totalAmountInvested: initialInvestment + annualInvestment * year,
       });
     }
-    this.resultData = annualData;
+    this.resultData.set(annualData);
   }
 
 }
